@@ -1,5 +1,4 @@
 {
 	"appId":"APP_ID",
-	"appSecret":"APP_SECRET",
-	"url":"URL"
+	"appSecret":"APP_SECRET"
 }

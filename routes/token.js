@@ -25,7 +25,10 @@ router.get('/', function(req, res) {
 		  	var ticket=JSON.parse(body).ticket;
 		  	console.log('ticket: '+ticket);
 
-		  	var result=sign(ticket,config.url);
+		  	var port = req.app.settings.port || cfg.port;
+		  	var url=req.protocol + '://' + req.host  + ( port == 80 || port == 443 ? '' : ':'+port ) + req.path;
+		  	var result=sign(ticket,req.url);
+
 		  	res.send(result);
 		});
 	});  
@@ -52,7 +55,9 @@ router.get('/client', function(req, res) {
 		  	var ticket=JSON.parse(body).ticket;
 		  	console.log('ticket: '+ticket);
 
-		  	var result=sign(ticket,config.url);
+		  	var port = req.app.settings.port || cfg.port;
+		  	var url=req.protocol + '://' + req.host  + ( port == 80 || port == 443 ? '' : ':'+port ) + req.path;
+		  	var result=sign(ticket,url);
 
 		  	//这之前，都和上面的「router.get('/', function(req, res) {..」是一样的。
 		  	res.render('client',{config:config, result:result});
