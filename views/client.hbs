@@ -1,0 +1,73 @@
+<h1>测试微信JS-SDK</h1>
+<p></p>
+
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+
+<script>
+
+console.log('wx config start ..');
+
+wx.config({
+      debug: false,
+      appId: '{{config.appId}}',
+      timestamp: '{{result.timestamp}}',
+      nonceStr: '{{result.nonceStr}}',
+      signature: '{{result.signature}}',
+      jsApiList: [
+        'checkJsApi',
+        'onMenuShareTimeline',
+        'onMenuShareAppMessage',
+        'onMenuShareQQ',
+        'onMenuShareWeibo',
+        'hideMenuItems',
+        'showMenuItems',
+        'hideAllNonBaseMenuItem',
+        'showAllNonBaseMenuItem',
+        'translateVoice',
+        'startRecord',
+        'stopRecord',
+        'onRecordEnd',
+        'playVoice',
+        'pauseVoice',
+        'stopVoice',
+        'uploadVoice',
+        'downloadVoice',
+        'chooseImage',
+        'previewImage',
+        'uploadImage',
+        'downloadImage',
+        'getNetworkType',
+        'openLocation',
+        'getLocation',
+        'hideOptionMenu',
+        'showOptionMenu',
+        'closeWindow',
+        'scanQRCode',
+        'chooseWXPay',
+        'openProductSpecificView',
+        'addCard',
+        'chooseCard',
+        'openCard'
+      ]
+  });
+
+wx.ready(function(){
+	console.log('wx ready.');
+
+	wx.checkJsApi({
+		jsApiList: [
+        'getNetworkType',
+        'previewImage'
+      ],
+      success: function (res) {
+        alert(JSON.stringify(res));
+      }
+	});
+});
+
+wx.error(function(res){
+	console.log('error!');
+	console.dir(res);
+});
+
+</script>
