@@ -31,6 +31,7 @@ router.get('/', function(req, res) {
 	});  
 });
 
+/* 正式的演示代码，包括服务器端生成签名，客户端通过签名使用微信API方法 */
 router.get('/client', function(req, res) {
 	request('https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='+config.appId+'&secret='+config.appSecret, function (error, response, body) {
 		console.log('根据appId和appSecret获取accessToken ..');
