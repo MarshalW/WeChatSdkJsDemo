@@ -40,7 +40,7 @@ var max_live=7200-1000;
 router.get('/sign',function(req,res){
 	var now=new Date().getTime()/1000;
 	var callback=function(){
-		console.log('>>>>>url: '+req.params.url);
+		console.log('>>>>>url: '+req.param('url');
 		res.send({status:'ok'});
 	}
 
