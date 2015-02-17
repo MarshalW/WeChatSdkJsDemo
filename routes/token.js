@@ -40,8 +40,9 @@ var max_live=7200-1000;
 router.get('/sign',function(req,res){
 	var now=new Date().getTime()/1000;
 	var callback=function(){
-		console.log('>>>>>url: '+req.param('url'));
-		res.send({status:'ok'});
+		var url= req.param('url')|req.protocol + '://' + req.host  + ( port == 80 || port == 443 ? '' : ':'+port ) + req.path;
+		var result=sign(globalToken.ticket,url);
+		res.send(result);
 	}
 
 	if (!globalToken.time || now-globalToken.time>max_live){
