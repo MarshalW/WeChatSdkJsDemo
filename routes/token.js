@@ -39,18 +39,20 @@ var max_live=7200-1000;
 
 router.get('/sign',function(req,res){
 	var now=new Date().getTime()/1000;
+	var callback=function(){
+		console.log('>>>>>url: '+req.params.url);
+		res.send({status:'ok'});
+	}
 
 	if (!globalToken.time || now-globalToken.time>max_live){
 		refreshGlobalToken(req,res,function(){
 			console.log('获取新的token');
+			callback();
 		})
 	}else{
 		console.log('重复使用token');
+		callback();
 	}
-
-	console.log('>>>>>url: '+req.params.url);
-
-	res.send({status:'ok'});
 });
 
 /* 正式的演示代码，包括服务器端生成签名，客户端通过签名使用微信API方法 */
